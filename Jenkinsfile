@@ -12,6 +12,7 @@ node('node') {
     stage ( 'shrun') {
         echo "This time, the Gradle version"
         sh '~/gradle-4.1/bin/gradle test'
+<<<<<<< HEAD
         echo "Ramesh:Gopinath Updatenew"
       }
 }
@@ -19,3 +20,9 @@ node('node') {
 
 
 
+=======
+        echo "Soooooper"
+        echo "Thank"
+      }
+}
+>>>>>>> 4e8c3f8ca963f1caa2576772917ec2900e903379
