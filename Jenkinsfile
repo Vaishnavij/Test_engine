@@ -11,7 +11,7 @@ node('node') {
     }
     stage ( 'shrun') {
         echo "This time, the Gradle version"
-        sh '~/gradle-4.1/bin/gradle test'
+        sh '~/gradle-4.1/bin/gradle test2'
         echo "Ramesh:Gopinath Updatenew"
       }
 }
