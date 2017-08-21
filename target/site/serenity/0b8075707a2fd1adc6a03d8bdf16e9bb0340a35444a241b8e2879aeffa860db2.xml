@@ -1,0 +1,6 @@
+<acceptance-test-run title="Add test2" name="addTest2" steps="0" successful="0" failures="0" skipped="0" ignored="0" pending="0" annotated-result="FAILURE" result="FAILURE" duration="0" timestamp="2017-08-21T17:40:30.314+05:30">
+  <user-story id="functional.CalculatorTest" name="Calculator test" path="functional"/>
+  <tags>
+    <tag name="Calculator test" type="story"/>
+  </tags>
+</acceptance-test-run>

@@ -1,47 +1,58 @@
 package functional;
 
 import engine.calculator.Calculator;
+import net.serenitybdd.junit.runners.SerenityRunner;
+import net.thucydides.core.annotations.Pending;
+import net.thucydides.core.annotations.Title;
+import net.thucydides.core.annotations.WithTagValuesOf;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 
-@RunWith(JUnit4.class)
+@RunWith(SerenityRunner.class)
 public class CalculatorTest {
 
     Calculator test= new Calculator();
 
     @Test
+    @WithTagValuesOf({"epic:calculator", "stories:add_operation"})
+    @Title(value = "Addition test 1")
     public void addTest(){
         int addValue = test.addition(10, 12);
         Assert.assertEquals(22, addValue);
     }
 
     @Test
+    @WithTagValuesOf({"epic:calculator", "stories:sub_operation"})
     public void subTest(){
         int subValue = test.subtraction(10, 12);
-        Assert.assertEquals(-2, subValue);
+        Assert.assertEquals(2, subValue);
     }
 
     @Test
+    @WithTagValuesOf({"epic:calculator", "stories:add_operation", "stories:sub_operation"})
+    @Pending
     public void multiplyTest(){
         int multiply = test.multiply(10, 12);
         Assert.assertEquals(120, multiply);
     }
 
     @Test
+    @WithTagValuesOf({"epic:calculator", "stories:sub_operation"})
     public void divisionTest(){
         int divide = test.divide(10, 10);
         Assert.assertEquals(1, divide);
     }
 
     public void addTest1(){
-        int addValue = test.addition(10, 12);
+        int addValue = test.addition(100000000, 120000000);
         Assert.assertEquals(22, addValue);
     }
 
     @Test
+    @Ignore
     public void subTest1(){
         int subValue = test.subtraction(10, 12);
         Assert.assertEquals(-2, subValue);

@@ -1,0 +1,5 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Calculator test","Addition test 1","SUCCESS","2017-08-21T17:40:30.316+05:30","0.0","0.0"
+"Calculator test","Division test","SUCCESS","2017-08-21T17:40:30.312+05:30","0.0","0.0"
+"Calculator test","Multiply test","PENDING","2017-08-21T17:40:30.326+05:30","0.0","0.0"
+"Calculator test","Sub test","FAILURE","2017-08-21T17:40:30.309+05:30","0.0","0.0"

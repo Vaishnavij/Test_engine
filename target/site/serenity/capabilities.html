@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Requirements</title>
+    <link rel="shortcut icon" href="favicon.ico">
+
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- JQuery-UI -->
+<link type="text/css" href="jqueryui/1.11.2-start/jquery-ui.min.css" rel="Stylesheet" />
+<script type="text/javascript" src="jqueryui/1.11.2-start/jquery-ui.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.10.4/media/jqueryui/dataTables.jqueryui.css" rel="Stylesheet"/>
+<link type="text/css" href="css/tables.css" rel="stylesheet" />
+
+<script type="text/javascript" src="datatables/1.10.4/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="datatables/1.10.4/media/jqueryui/dataTables.jqueryui.min.js"></script><!-- jQplot -->
+<!--[if IE]>
+<script language="javascript" type="text/javascript" src="excanvas/3/excanvas.compiled.js"></script>
+<![endif]--><link rel="stylesheet" type="text/css" href="jqplot/1.0.8/jquery.jqplot.min.css"/>
+<script type="text/javascript" src="jqplot/1.0.8/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="jqplot/1.0.8/plugins/jqplot.pieRenderer.min.js"></script>
+
+
+    <script class="code" type="text/javascript">$(document).ready(function () {
+        var plot1 = $.jqplot('coverage_pie_chart', [
+            [
+                ['Passing', 0.466667],
+                ['Pending', 0.066667],
+                ['Ignored', 0.066667],
+                ['Failing', 0.4],
+                ['Errors',  0]
+            ]
+        ], {
+            gridPadding: {top: 0, bottom: 38, left: 0, right: 0},
+            seriesColors: ['#30cb23',
+                
+                '#a2f2f2',
+                
+                '#eeeadd',
+                
+                '#f8001f',
+                
+                '#fc6e1f'],
+            seriesDefaults: {
+                renderer: $.jqplot.PieRenderer,
+                trendline: {show: false},
+                rendererOptions: {padding: 8, showDataLabels: true}
+            },
+            legend: {
+                show: true,
+                placement: 'outside',
+                rendererOptions: {
+                    numberRows: 3
+                },
+                location: 's',
+                marginTop: '15px'
+            },
+            series: [
+                {label: '46.7% requirements tested successfully'},
+                {label: '13.3% requirements untested'},
+                {label: '40%} requirements failing'},
+                {label: '0%} requirements with errors'}
+            ]
+        });
+        // Results table
+        $('#req-results-table').DataTable({
+            "order": [
+                [2, "asc"]
+            ],
+            "pageLength": 25
+        });
+        $('#test-results-table').DataTable({
+            "order": [
+                [2, "asc"]
+            ],
+            "pageLength": 25
+        });
+        $('#examples-table').DataTable({
+            "order": [
+                [2, "asc"]
+            ],
+            "pageLength": 25
+        });
+        $("#tabs").tabs();
+        $("#test-tabs").tabs();
+    })
+    ;
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".read-more-link").click(function () {
+                $(this).nextAll("div.read-more-text").toggle();
+                var isrc = $(this).find("img").attr('src');
+                if (isrc == 'images/plus.png') {
+                    $(this).find("img").attr("src", function () {
+                        return "images/minus.png";
+                    });
+                } else {
+                    $(this).find("img").attr("src", function () {
+                        return "images/plus.png";
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="results-page">
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-bdd-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname"></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+            <a href='index.html'>Home</a>
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li >
+            <a href="index.html"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li class="active">
+            <a href="#"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 21-08-2017 17:40</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+    <div id="beforetable"></div>
+    <div id="results-dashboard">
+        <div class="middlb">
+            <div class="table">
+
+                <div id="requirements-summary">
+                    <div id="coverage_pie_chart"
+                         style="margin-top:10px; margin-left:10px; width:250px; height:250px;"></div>
+                    <div id="coverage_summary">
+                        <div>
+                            <h4>Requirements Overview</h4>
+                            <table class="summary-table">
+                                <head>
+                                    <tr>
+                                        <th>Requirement Type</th>
+                                        <th>Total</th>
+                                        <th>Pass&nbsp;<i class="icon-check"/></th>
+                                        <th>Fail&nbsp;<i class="icon-thumbs-down"/></th>
+                                        <th>Pending&nbsp;<i class="icon-calendar"/></th>
+                                        <th>Ignored&nbsp;<i class="icon-ban-circle"/></th>
+                                        <th>Untested&nbsp;<i class="icon-question"/></th>
+                                    </tr>
+                                </head>
+                                <body>
+                                <tr>
+                                    <td class="summary-leading-column">Acceptance Criteria (tests)</td>
+                                    <td>15</td>
+                                    <td>7</td>
+                                    <td>6</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td></td>
+                                </tr>
+                                </body>
+                            </table>
+                        </div>
+
+
+
+
+
+<div>
+    <h4>Test Result Summary</h4>
+    <table class="summary-table">
+        <head>
+            <tr>
+                <th>Test Type</th>
+                <th>Total</th>
+                <th>Pass&nbsp;<i class="icon-check"/> </th>
+                <th>Fail&nbsp;<i class="icon-thumbs-down"/></th>
+                <th>Pending&nbsp;<i class="icon-calendar"/></th>
+                <th>Ignored&nbsp;<i class="icon-ban-circle"/></th>
+            </tr>
+        </head>
+        <body>
+        <tr>
+            <td class="summary-leading-column">Automated</td>
+            <td>15</td>
+            <td>7 (47%)</td>
+            <td>6 (40%)</td>
+            <td>1 (7%)</td>
+            <td>1 (7%)</td>
+        </tr>
+        <tr>
+            <td class="summary-leading-column">Manual</td>
+            <td>0</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+        </tr>
+        <tr>
+            <td class="summary-leading-column">Total</td>
+            <td>15</td>
+            <td>7 (47%)</td>
+            <td>6 (40%)</td>
+            <td>1 (7%)</td>
+            <td>1 (7%)</td>
+        </tr>
+        <tr>
+            <td class="summary-leading-column">Total Duration</td>
+                <td colspan="5">0 seconds</td>
+        </tr>
+        </body>
+    </table>
+</div>
+                    </div>
+                </div>
+                <div class="clr"></div>
+
+                <div id="tabs">
+
+                        <div id="test-tabs">
+                            <ul>
+                                <li><a href="#test-tabs-1">Acceptance Tests (15)</a></li>
+                            </ul>
+                            <div id="test_list_tests" class="table">
+                                <div class="test-results">
+                                    <table id="test-results-table">
+                                        <thead>
+                                        <tr>
+                                            <th width="50" class="test-results-heading">&nbsp;</th>
+                                            <th width="%" class="test-results-heading">Acceptance Tests</th>
+                                            <th width="70" class="test-results-heading">Steps</th>
+                                            <th width="65" class="test-results-heading">Stable</th>
+                                            <th width="100" class="test-results-heading">Duration<br>(seconds)</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            <tr class="test-FAILURE">
+                                                <td>
+                                                    <img src="images/fail.png"
+                                                         title="FAILURE"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">FAILURE</span>
+                                                    
+                                                </td>
+                                                <td class="FAILURE-text"><a
+                                                        href="0b8075707a2fd1adc6a03d8bdf16e9bb0340a35444a241b8e2879aeffa860db2.html"
+                                                        title="expected:(2) but was:(22)">Add test2 </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0</td>
+                                            </tr>
+
+
+                                            <tr class="test-SUCCESS">
+                                                <td>
+                                                    <img src="images/success.png"
+                                                         title="SUCCESS"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">SUCCESS</span>
+                                                    
+                                                </td>
+                                                <td class="SUCCESS-text"><a
+                                                        href="d7db45c22f5b9268beaa27b120957aa2796d5ab8e630f547a1abe51ba5b2dfdf.html"
+                                                        title="">Add test4 </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0</td>
+                                            </tr>
+
+
+                                            <tr class="test-SUCCESS">
+                                                <td>
+                                                    <img src="images/success.png"
+                                                         title="SUCCESS"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">SUCCESS</span>
+                                                    
+                                                </td>
+                                                <td class="SUCCESS-text"><a
+                                                        href="4ae6ef37afa138a4b82edcb4586c3ce8e68cd431e4ee33ca5c3ff2756e792db7.html"
+                                                        title="">Addition test 1 </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0</td>
+                                            </tr>
+
+
+                                            <tr class="test-SUCCESS">
+                                                <td>
+                                                    <img src="images/success.png"
+                                                         title="SUCCESS"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">SUCCESS</span>
+                                                    
+                                                </td>
+                                                <td class="SUCCESS-text"><a
+                                                        href="340451f0b2183a5e3b4ee97831769619d3e36f7adf95e7b33074caca9be640cc.html"
+                                                        title="">Division test </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0</td>
+                                            </tr>
+
+
+                                            <tr class="test-SUCCESS">
+                                                <td>
+                                                    <img src="images/success.png"
+                                                         title="SUCCESS"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">SUCCESS</span>
+                                                    
+                                                </td>
+                                                <td class="SUCCESS-text"><a
+                                                        href="e0c895abd93e220bbf49b96c92abdaece0bfaf8632013ba82a4951fcd6bc679d.html"
+                                                        title="">Division test1 </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0</td>
+                                            </tr>
+
+
+                                            <tr class="test-FAILURE">
+                                                <td>
+                                                    <img src="images/fail.png"
+                                                         title="FAILURE"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">FAILURE</span>
+                                                    
+                                                </td>
+                                                <td class="FAILURE-text"><a
+                                                        href="43f13f3144db006fab8bd1a34f05a4b8535dc5ab1c36d89403c466742d3e9d92.html"
+                                                        title="expected:(10) but was:(1)">Division test2 </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0</td>
+                                            </tr>
+
+
+                                            <tr class="test-FAILURE">
+                                                <td>
+                                                    <img src="images/fail.png"
+                                                         title="FAILURE"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">FAILURE</span>
+                                                    
+                                                </td>
+                                                <td class="FAILURE-text"><a
+                                                        href="fbab7dff4bb73519fcc9b7d4418e99cfca125086e8b342f8d9758e2bb4725501.html"
+                                                        title="expected:(10) but was:(1)">Division test4 </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0</td>
+                                            </tr>
+
+
+                                            <tr class="test-PENDING">
+                                                <td>
+                                                    <img src="images/pending.png"
+                                                         title="PENDING"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">PENDING</span>
+                                                    
+                                                </td>
+                                                <td class="PENDING-text"><a
+                                                        href="989b93264a92b5caa05575fc3f2c997599f54812fed807048987cffc18cefd24.html"
+                                                        title="">Multiply test </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0</td>
+                                            </tr>
+
+
+                                            <tr class="test-SUCCESS">
+                                                <td>
+                                                    <img src="images/success.png"
+                                                         title="SUCCESS"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">SUCCESS</span>
+                                                    
+                                                </td>
+                                                <td class="SUCCESS-text"><a
+                                                        href="7f04409021aed32fe130dd21953427e6599db1aef900562996d5570e9d083999.html"
+                                                        title="">Multiply test1 </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0</td>
+                                            </tr>
+
+
+                                            <tr class="test-SUCCESS">
+                                                <td>
+                                                    <img src="images/success.png"
+                                                         title="SUCCESS"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">SUCCESS</span>
+                                                    
+                                                </td>
+                                                <td class="SUCCESS-text"><a
+                                                        href="b3ba5ca3e3826262802e05a9b98a016a7d0133c3d79b22acb67b4a9c049ef9fc.html"
+                                                        title="">Multiply test2 </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0</td>
+                                            </tr>
+
+
+                                            <tr class="test-FAILURE">
+                                                <td>
+                                                    <img src="images/fail.png"
+                                                         title="FAILURE"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">FAILURE</span>
+                                                    
+                                                </td>
+                                                <td class="FAILURE-text"><a
+                                                        href="5c5035cfe3a0edbb8a79265c4d2f79a141b0b33eb770e4ba2c771c6e8e81c849.html"
+                                                        title="expected:(10) but was:(120)">Multiply test4 </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0</td>
+                                            </tr>
+
+
+                                            <tr class="test-FAILURE">
+                                                <td>
+                                                    <img src="images/fail.png"
+                                                         title="FAILURE"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">FAILURE</span>
+                                                    
+                                                </td>
+                                                <td class="FAILURE-text"><a
+                                                        href="e3202340a89bbba44ed8f127c18a8b4c706639e93f90da5d7f4e694b041bc00b.html"
+                                                        title="expected:(2) but was:(-2)">Sub test </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0</td>
+                                            </tr>
+
+
+                                            <tr class="test-IGNORED">
+                                                <td>
+                                                    <img src="images/ignor.png"
+                                                         title="IGNORED"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">IGNORED</span>
+                                                    
+                                                </td>
+                                                <td class="IGNORED-text"><a
+                                                        href="1a5150a56d7c53b21191d4f35e8b8957328ba35dcd8a6cdbea2bb17b6304c36c.html"
+                                                        title="">Sub test1 </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0</td>
+                                            </tr>
+
+
+                                            <tr class="test-FAILURE">
+                                                <td>
+                                                    <img src="images/fail.png"
+                                                         title="FAILURE"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">FAILURE</span>
+                                                    
+                                                </td>
+                                                <td class="FAILURE-text"><a
+                                                        href="3d0666505232713cba1dffd47d1b9817d215ad0a245b6f01ac91cb578ccfb95e.html"
+                                                        title="expected:(-23) but was:(-2)">Sub test2 </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0.01</td>
+                                            </tr>
+
+
+                                            <tr class="test-SUCCESS">
+                                                <td>
+                                                    <img src="images/success.png"
+                                                         title="SUCCESS"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">SUCCESS</span>
+                                                    
+                                                </td>
+                                                <td class="SUCCESS-text"><a
+                                                        href="24dd8a0e39f3931ce66ae73aba3d8dbbf1b2155352acd8217e80e5bd44c22cae.html"
+                                                        title="">Sub test4 </a>
+                                                </td>
+
+                                                <td class="lightgreentext">0</td>
+                                                <td class="bluetext">
+                                                    <img src="images/traffic-in-progress.gif"
+                                                         title="Over the last 0 tests: 0 passed, 0 failed, 0 pending"
+                                                         class="summary-icon"/>
+                                                    <span style="display:none">0</span>
+                                                </td>
+                                                <td class="lightgreentext">0.01</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.1.1</span>
+</div>
+</body>
+</html>
