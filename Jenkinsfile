@@ -13,4 +13,7 @@ node('node') {
         echo "This time, the Gradle version"
         sh '~/gradle-4.1/bin/gradle clean test aggregate'
       }
+    stage ('rsync'){
+        sh '/bin/rsync -avzh /var/lib/jenkins/workspace/Gradle_Test_Run/target/site/serenity vagrant@10.134.22.140:/var/www/html/'
+      }
 }
