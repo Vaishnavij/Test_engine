@@ -28,7 +28,7 @@ public class CalculatorTest {
     @WithTagValuesOf({"epic:calculator", "stories:sub_operation"})
     public void subTest(){
         int subValue = test.subtraction(10, 12);
-        Assert.assertEquals(2, subValue);
+        Assert.assertEquals(-2, subValue);
     }
 
     @Test
@@ -55,13 +55,13 @@ public class CalculatorTest {
     @Ignore
     public void subTest1(){
         int subValue = test.subtraction(10, 12);
-        Assert.assertEquals(-2, subValue);
+        Assert.assertEquals(2, subValue);
     }
 
     @Test
     public void multiplyTest1(){
         int multiply = test.multiply(10, 12);
-        Assert.assertEquals(120, multiply);
+        Assert.assertEquals(10, multiply);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class CalculatorTest {
     @Test
     public void subTest2(){
         int subValue = test.subtraction(10, 12);
-        Assert.assertEquals(-23, subValue);
+        Assert.assertEquals(23, subValue);
     }
 
     @Test
