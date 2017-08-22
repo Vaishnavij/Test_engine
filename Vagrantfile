@@ -3,7 +3,7 @@ Vagrant.configure("2") do |ci_server|
       ci_server.vm.define :ci_server do |ci_server|
       ci_server.vm.provider "virtualbox" do |vb|
       ci_server.vm.box = "centos/7"
-      ci_server.vm.hostname = "ci_server"
+      ci_server.vm.hostname = "ciserver"
       vb.memory = "2048"
       ci_server.vm.network :private_network, ip: "10.0.15.10"
       ci_server.vm.provision "shell", inline: "sudo yum update -y"
