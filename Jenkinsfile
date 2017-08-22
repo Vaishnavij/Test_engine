@@ -1,5 +1,6 @@
 node('node') {
     // some block
+    checkout scm
     pwd()
     stage('checkout') {
     // some block
