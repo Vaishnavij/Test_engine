@@ -1,0 +1,14 @@
+---
+# tasks file for jenkins
+- name: Install nginx epl repo
+  yum:
+    name: epel-release
+    state: present
+    update_cache: yes
+
+- name: Install nginx
+  yum:
+    name: nginx
+    state: latest
+    #enabled: no
+  notify: restart nginx

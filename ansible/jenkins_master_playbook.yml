@@ -1,0 +1,5 @@
+---
+- hosts: ci_server
+  remote_user: vagrant
+  roles:
+    - {role: jenkins_master}

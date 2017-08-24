@@ -1,0 +1,8 @@
+[ci_server]
+10.0.15.10 name="ci_server"
+
+[node]
+10.0.15.11 name="node1"
+
+[web]
+10.0.15.12 name="web01"
