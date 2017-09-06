@@ -1,0 +1,45 @@
+{
+  "uid" : "656fae92e6db241f",
+  "name" : "addTest",
+  "fullName" : "functional.CalculatorTest.addTest",
+  "historyId" : "c6ee00c9ed34b207e5e40f85d5176eb8",
+  "time" : {
+    "start" : 1503495710466,
+    "stop" : 1503495710467,
+    "duration" : 1
+  },
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "functional"
+  }, {
+    "name" : "testClass",
+    "value" : "functional.CalculatorTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "addTest"
+  }, {
+    "name" : "suite",
+    "value" : "functional.CalculatorTest"
+  }, {
+    "name" : "host",
+    "value" : "IN-Vaishnavi.local"
+  }, {
+    "name" : "thread",
+    "value" : "88247@IN-Vaishnavi.local.Test worker(11)"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  }
+}
